@@ -1,0 +1,23 @@
+trigger CountWorkOrders on WorkOrder__c (after Insert,after Update,after Delete,after Undelete){
+    
+    CountWorkOrders  obj = new CountWorkOrders();
+    
+     if ((Trigger.IsInsert) || (Trigger.IsUndelete))
+     {
+         obj.CountWorkOrders(Trigger.New);
+     }
+        if (Trigger.IsDelete)
+     {
+
+         obj.CountWorkOrders(Trigger.Old);
+
+     }
+           if (Trigger.IsUpdate)
+
+     {
+
+     obj.CountWorkOrders(Trigger.New,Trigger.OldMap);
+
+     }
+
+}
